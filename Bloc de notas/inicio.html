@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+**
+** Editor de texto
+** @archivo: HTML
+** @autor: mra158
+** @version: Bloc de notas 1.0
+** @descripcion: Este editor es la primera parte de un editor enriquesido (EDE), Tiene como finalidad controlar los aspectos basicos de cualquier editor
+** 
+**
+-->
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Un bloc de notas para texto sin formato">
+	<link rel="stylesheet" href="base.css">
+	<title>Bloc de texto</title>
+</head>
+<body>
+	<main class="contenedor">
+		<header class="barra">
+			<div class="brr-herramienta">
+				<ul class="herramientas">
+					<li class="li-hrra his">
+						<div class="div-hrra">
+							<span class="herramienta" id="deshacer" onclick="herramientas.acciones.historial.des()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 7)"><path d="m.5 6.5c3.33333333-4 6.33333333-6 9-6 2.6666667 0 5 1 7 3"/><path d="m.5 1.5v5h5"/></g></svg>
+							</span>
+							<span class="herramienta" id="rehacer" onclick="herramientas.acciones.historial.re()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 7)"><path d="m16.5 6.5c-3.1700033-4-6.1700033-6-9-6-2.82999674 0-5.16333008 1-7 3"/><path d="m11.5 6.5h5v-5"/></g></svg>
+							</span>
+						</div>
+					</li>
+					<li class="li-hrra archivo">
+						<div class="div-hrra">
+							<span class="herramienta" id="nuevo" onclick="herramientas.archivo.nuevo()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m12.5 12.5v-8l-4-4h-6c-1.1045695 0-2 .8954305-2 2v10c0 1.1045695.8954305 2 2 2h8c1.1045695 0 2-.8954305 2-2z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 3)"/></svg>
+							</span>
+							<span class="herramienta" id="abrir" onclick="herramientas.archivo.abrir()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 4)"><path d="m15.5 4.5c.000802-1.10737712-.8946285-2.00280762-1.999198-2.00280762l-5.000802.00280762-2-2h-4c-.55228475 0-1 .44771525-1 1v.99719238 2.00280762"/><path d="m.81056316 5.74177845 1.31072322 5.24326075c.22257179.8903496 1.02254541 1.5149608 1.94029301 1.5149608h8.87667761c.9177969 0 1.7178001-.6246768 1.9403251-1.5150889l1.3108108-5.24508337c.1339045-.53580596-.1919011-1.07871356-.727707-1.21261805-.079341-.0198283-.1608148-.02983749-.2425959-.02983749l-13.43852073.00188666c-.55228474.00007754-.99985959.44785564-.99985959 1.00014038 0 .08170931.01003737.16310922.02985348.24237922z"/></g></svg>
+							</span>
+							<span class="herramienta" id="guardar" onclick="herramientas.archivo.guardar()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 4)"><path d="m2.5.5h7l3 3v7c0 1.1045695-.8954305 2-2 2h-8c-1.1045695 0-2-.8954305-2-2v-8c0-1.1045695.8954305-2 2-2z"/><path d="m4.50000081 8.5h4c.55228475 0 1 .44771525 1 1v3h-6v-3c0-.55228475.44771525-1 1-1z"/><path d="m3.5 3.5h2v2h-2z"/></g></svg>
+							</span>
+						</div>
+					</li>
+					<li class="li-hrra portapapel">
+						<div class="div-hrra">
+							<span class="herramienta" id="copiar">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 3)"><path d="m11.5 9.5v-7c0-1.1045695-.8954305-2-2-2h-7c-1.1045695 0-2 .8954305-2 2v7c0 1.1045695.8954305 2 2 2h7c1.1045695 0 2-.8954305 2-2z"/><path d="m3.5 11.5v1c0 1.1045695.8954305 2 2 2h7c1.1045695 0 2-.8954305 2-2v-7c0-1.1045695-.8954305-2-2-2h-1"/></g></svg>
+							</span>
+							<span class="herramienta" id="cortar">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m6 10 7-7c.5522847-.55228475.5522847-1.44771525 0-2s-1.4477153-.55228475-2 0l-10.5 10.5h7l-3.5-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 5)"/></svg>
+							</span>
+							<span class="herramienta" id="pegar" onclick="herramientas.portapapeles.pegar.txt()">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 3)"><path d="m3.5 1.5c-.42139382 0-1.08806048 0-2 0-.55228475 0-1 .44771525-1 1v11c0 .5522848.44771525 1 1 1h10c.5522847 0 1-.4477152 1-1v-11c0-.55228475-.4477153-1-1-1-.8888889 0-1.55555556 0-2 0"/><path d="m4.5.5h4c.55228475 0 1 .44771525 1 1s-.44771525 1-1 1h-4c-.55228475 0-1-.44771525-1-1s.44771525-1 1-1z"/><path d="m3.5 8.5 2 2 5-5"/></g></svg>
+							</span>
+						</div>
+					</li>
+					<li class="li-hrra edicion">
+						<div class="div-hrra">
+							<span class="herramienta" id="btn-lupa" name="abrir" onclick="herramientas.edicion.cuadro.busqueda.abrir(this)">
+								<svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><path d="m17.571 17.5-5.571-5.5"/></g></svg>
+							</span>
+						</div>
+					</li>
+					<li class="li-hrra fuente">
+						<div class="div-hrra">
+							<span class="herramienta" id="">
+								
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<section id="oculto">
+			<div id="cuadro-buscar">
+				<form id="busqueda" onsubmit="event.preventDefault()">
+					<input type="button" value="antes" name="btn-antes" onclick="herramientas.edicion.cuadro.busqueda.ant()">
+					<input id="buscar" type="text" placeholder="Busca texto" name="buscar">
+					<input type="button" value="buscar" name="btn-buscar" onclick="herramientas.edicion.buscar()">
+					<input type="button" value="siguiente" name="btn-siguiente" onclick="herramientas.edicion.cuadro.busqueda.sig()">
+					<input type="button" value="cerrar" name="btn-cerrar" onclick="herramientas.edicion.cuadro.busqueda.abrir(this)">
+					<span id="nmrBsqd">-</span><font>/</font><span id="cntrBsqd">-</span>
+				</form>
+			</div>
+		</section>
+		<section class="bloc">
+			<div id="nota" contenteditable="true" placeholder="Escribe..." ></div>
+		</section>
+	</main>
+	
+	<script src="script.js"></script>
+</body>
+</html>
